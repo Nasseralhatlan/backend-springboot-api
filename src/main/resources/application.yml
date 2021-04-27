@@ -1,8 +1,9 @@
+
 server:
   ssl:
-    key-alias: spring-https
-    key-store: classpath.elm.jks
-    key-store-type: JKS
-    key-password: password
-
-port: 9000
+    key-alias: elm
+    key-store: classpath:elm.p12
+    key-store-type: PKCS12
+    key-store-password: password
+    enabled: true
+  port: 9000
