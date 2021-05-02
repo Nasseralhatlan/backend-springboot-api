@@ -74,18 +74,11 @@ public class authConroller {
             return ResponseEntity.ok(response);
         }
 
-        User USER = userService.findByUsername(username);
-        if(USER != null) {
-            final UserDetails user = myUserDetailsService.loadUserByUsername(username);
-            final String jwt = jwtUtil.generateToken(user);
-            response.add("token",jwt);
-            response.add("message","Logged in successfully");
-            response.add("code","AL1");
-            return ResponseEntity.ok(response);
-        }else{
-            response.add("message","Wrong username or password !");
-            response.add("code","AL2");
-            return ResponseEntity.ok(response);
-        }
+        final UserDetails user = myUserDetailsService.loadUserByUsername(username);
+        final String jwt = jwtUtil.generateToken(user);
+        response.add("token",jwt);
+        response.add("message","Logged in successfully");
+        response.add("code","AL1");
+        return ResponseEntity.ok(response);
     }
 }

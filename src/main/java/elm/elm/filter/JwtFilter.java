@@ -55,12 +55,6 @@ public class JwtFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities());
                 token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(token);
-            }else{
-                Map<String, Object> errorDetails = new HashMap<>();
-                errorDetails.put("message", "Invalid token");
-                response.setStatus(HttpStatus.FORBIDDEN.value());
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                mapper.writeValue(response.getWriter(), errorDetails);
             }
         }
         chain.doFilter(request,response);
